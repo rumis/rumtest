@@ -1,0 +1,17 @@
+{
+    "name": "rumis/rumtest",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "liumurong1",
+            "email": "liumurong1@100tal.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "RumTest\\": "./src"
+        }
+    }
+}
