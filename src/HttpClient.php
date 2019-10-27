@@ -26,12 +26,12 @@ class HttpClient
         go(function () use ($chan, $host, $port, $path, $headers, $params) {
             $cli = new \Swoole\Coroutine\Http\Client($host, $port);
             $cli->setHeaders($headers);
-            $cli->setData(http_build_query($params));
-            $cli->get($path);
+            $cli->get($path . '?' . http_build_query($params));
             $chan->push([
                 'header' => $cli->headers,
                 'body' => $cli->body,
-                'cookie' => $cli->cookies
+                'cookie' => $cli->cookies,
+                'code' => $cli->getStatusCode()
             ]);
         });
     }
@@ -55,7 +55,8 @@ class HttpClient
             $chan->push([
                 'header' => $cli->headers,
                 'body' => $cli->body,
-                'cookie' => $cli->cookies
+                'cookie' => $cli->cookies,
+                'code' => $cli->getStatusCode()
             ]);
         });
     }
